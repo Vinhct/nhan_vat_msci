@@ -1,0 +1,85 @@
+/* HeroArt */
+.art-container {
+  
+    padding: 20px;
+    z-index: 3;
+    width: 100%;
+    min-height: 300px;
+  }
+  
+  .art-title {
+    color: #00b7eb; /* Màu neon cyan */
+    font-family: 'Orbitron', sans-serif; /* Font sci-fi */
+    font-size: 2rem; /* Tăng kích thước để nổi bật */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00b7eb, 0 0 20px #00b7eb, 0 0 30px #00ff00; /* Hiệu ứng bóng neon */
+    position: relative;
+    padding: 5px 10px;
+    background: linear-gradient(90deg, #00b7eb, #00ff00, #ff4500); /* Gradient cho viền */
+    -webkit-background-clip: text;
+    color: transparent; /* Dùng gradient làm màu chữ */
+    animation: neonGlow 1.5s ease-in-out infinite alternate; /* Hiệu ứng nhấp nháy neon */
+  }
+  
+  .art-title::before{
+    content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 25%;
+      height: 3px;
+      background: linear-gradient(90deg, #00b7eb, #8a2be2, #00b7eb); /* Gradient từ xanh dương sang tím */
+      background-size: 200%;
+      animation: gradientRun 3s linear infinite; /* Thanh gradient chạy */
+      border-radius: 2px;
+      box-shadow: 0 0 10px #00b7eb;
+  
+  }
+
+  h2.art-title {
+    color: #fff;
+}
+  
+  .art-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .art-image-container {
+    width: 700px;
+    height: 500px;
+    margin: 0 20px;
+  }
+  
+  .art-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+  }
+  
+  .art-nav-btn {
+    background: rgba(0, 183, 235, 0.5);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+  }
+  
+  .art-nav-btn.prev {
+    left: 10px;
+  }
+  
+  .art-nav-btn.next {
+    right: 10px;
+  }

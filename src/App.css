@@ -1,38 +1,192 @@
-.App {
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+.sci-fi-bg {
+  background: linear-gradient(45deg, #1a1a2e, #16213e);
+  overflow: hidden;
+  position: relative;
+}
+
+.sci-fi-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+  color: transparent;
+  background: linear-gradient(90deg, #00b7eb, #00ff00, #ff4500, #00b7eb);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  animation: gradientShift 5s linear infinite;
+  text-shadow: 0 0 15px rgba(0, 183, 235, 0.7), 0 0 30px rgba(0, 255, 0, 0.5);
+  position: relative;
+  z-index: 10;
+}
+
+.title-underline {
+  width: 50%;
+  height: 5px;
+  background: linear-gradient(90deg, #00b7eb, #00ff00, #ff4500, #00b7eb);
+  background-size: 200%;
+  margin: 10px auto 0;
+  animation: gradientShift 5s linear infinite;
+  box-shadow: 0 0 15px rgba(0, 183, 235, 0.8);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 2s infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* Giữ nguyên phần HeroCarousel */
+.hero-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-wrapper {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.6s ease;
+  transform: translateX(0);
+}
+
+.card-wrapper.visible {
+  opacity: 1;
+}
+
+.hero-card {
+  width: 170px;
+  height: 220px;
+  background: rgba(0, 183, 235, 0.1);
+  border: 2px solid #00b7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 183, 235, 0.3);
+}
+
+.hero-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 183, 235, 0.8), 0 0 40px rgba(0, 255, 0, 0.4);
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00b7eb, #00ff00, #ff4500, #00b7eb);
+  background-size: 200%;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-card:hover::before {
+  opacity: 0.5;
+}
+
+.hero-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  filter: brightness(1.1);
+}
+
+.hero-info {
+  padding: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.hero-name {
+  color: #00b7eb;
+  font-size: 1rem;
+  margin: 5px 0;
+  text-shadow: 0 0 5px #00b7eb;
+}
+
+.hero-role {
+  color: #e0e0e0;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Giữ nguyên responsive */
+@media (max-width: 768px) {
+  .sci-fi-title {
+    font-size: 2rem;
+  }
+
+  .title-underline {
+    width: 70%;
+  }
+
+  .card-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-card {
+    width: 150px;
+    height: 200px;
+  }
+}
+
+/* Hiệu ứng sao theo con trỏ chuột */
+.cursor-star {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   pointer-events: none;
+  animation: cursorStar 1s ease-out forwards;
+  z-index: 2; /* Đặt phía sau .skills-container nhưng phía trên sao băng */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Animation cho sao theo con trỏ */
+@keyframes cursorStar {
+  0% {
+    opacity: 1;
+    transform: scale(1);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translate(20px, 20px);
   }
 }

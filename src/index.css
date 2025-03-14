@@ -1,13 +1,348 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Nền Sci-fi với không gian vũ trụ */
+.sci-fi-bg {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1e2a44 100%);
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Lớp tinh vân chi tiết */
+.sci-fi-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 183, 235, 0.2) 0%, transparent 70%);
+  filter: blur(50px);
+  opacity: 0.6;
+  animation: nebula-move 30s infinite ease-in-out;
+  zIndex: 0;
 }
+
+.sci-fi-bg::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 60%);
+  filter: blur(40px);
+  opacity: 0.5;
+  animation: nebula-move-reverse 25s infinite ease-in-out;
+  zIndex: 0;
+}
+
+.nebula-layer {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: nebula-move 35s infinite ease-in-out;
+  zIndex: 0;
+}
+
+/* Hạt bụi vũ trụ */
+.space-dust {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  zIndex: 2;
+}
+
+.space-dust span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #00b7eb;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #00b7eb, 0 0 10px #00b7eb;
+  animation: dust 10s linear infinite;
+}
+
+/* Hiệu ứng thiên thạch */
+.meteor-shower {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  zIndex: 2;
+}
+
+.meteor-shower span {
+  position: absolute;
+  width: 4px;
+  height: 100px;
+  background: linear-gradient(to bottom, #e0e0e0, transparent);
+  box-shadow: 0 0 10px #00b7eb, 0 0 20px #00b7eb;
+  transform: rotate(45deg);
+  animation: meteor 5s linear infinite;
+}
+
+/* Hạt 3D */
+.particle-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  zIndex: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #00b7eb, #00ff00);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #00b7eb, 0 0 20px #00ff00;
+  animation: particle 3s infinite ease-in-out;
+}
+
+/* Tiêu đề */
+.sci-fi-title {
+  color: #00b7eb;
+  text-shadow: 0 0 5px #00b7eb, 0 0 10px #00b7eb, 0 0 15px #00ff00;
+  letter-spacing: 2px;
+  animation: pulse 2s infinite ease-in-out;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  zIndex: 4;
+  font-size: 2rem;
+}
+
+/* Container các ô nhân vật */
+.hero-container {
+  width: 1190px; /* Chiều rộng viewport để hiển thị 7 thẻ (7 * 170px) */
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  zIndex: 2;
+  overflow: hidden;
+  padding-bottom: 20px;
+  margin: 0 auto; /* Căn giữa container */
+}
+
+/* Wrapper cho các thẻ để áp dụng chuyển động */
+.card-wrapper {
+  display: flex;
+  gap: 20px; /* Khoảng cách giữa các thẻ */
+  transition: transform 0.6s ease-out; /* Hiệu ứng slide mượt mà */
+  width: max-content; /* Đảm bảo wrapper đủ rộng để chứa tất cả thẻ */
+}
+
+/* Thẻ nhân vật */
+.hero-card {
+  width: 150px;
+  height: 200px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(30, 42, 68, 0.9), rgba(20, 30, 50, 0.9));
+  border: 2px solid #00b7eb;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 183, 235, 0.5), inset 0 0 10px rgba(0, 183, 235, 0.2);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+  cursor: pointer;
+  flex-shrink: 0; /* Ngăn thẻ co lại */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 0 30px rgba(0, 183, 235, 0.8), inset 0 0 15px rgba(0, 183, 235, 0.3);
+}
+
+/* Hiệu ứng phát sáng khi nhấp */
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 183, 235, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hero-card:hover .card-glow,
+.hero-card:active .card-glow {
+  opacity: 1;
+}
+
+.hero-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.hero-card:hover .hero-image {
+  transform: scale(1.05);
+}
+
+/* Văn bản */
+.sci-fi-text {
+  color: #00b7eb;
+  text-shadow: 0 0 3px #00b7eb, 0 0 5px #00ff00;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Tab điều hướng */
+.nav-tabs-custom {
+  background: rgba(30, 42, 68, 0.9);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+}
+
+.nav-tabs-custom .nav-link {
+  color: #00b7eb;
+  text-shadow: 0 0 3px #00b7eb;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-tabs-custom .nav-link:hover,
+.nav-tabs-custom .nav-link.active {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00b7eb;
+}
+
+/* Nội dung các tab */
+.skills-content, .guide-content, .story-content, .arts-content {
+  background: rgba(20, 30, 50, 0.9);
+  border: 2px solid #00b7eb;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+  color: #00b7eb;
+  text-align: center;
+}
+
+.skills-content h2, .guide-content h2, .story-content h2, .arts-content h2 {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.skill-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(0, 183, 235, 0.1);
+  border-radius: 5px;
+}
+
+.skill-item h3 {
+  color: #00b7eb;
+  text-shadow: 0 0 3px #00b7eb;
+}
+
+.skill-item p {
+  color: #e0e0e0;
+}
+
+.guide-content .video-link {
+  color: #00ff00;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.guide-content .video-link:hover {
+  color: #00b7eb;
+}
+
+.arts-content .art-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+}
+
+/* Keyframes */
+@keyframes nebula-move {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(10%, 5%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes nebula-move-reverse {
+  0% { transform: translate(5%, 10%); }
+  50% { transform: translate(-5%, -10%); }
+  100% { transform: translate(5%, 10%); }
+}
+
+@keyframes dust {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% {
+    transform: translateX(200px) translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: translateX(0) translateY(-100vh) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(100vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 5px #00b7eb, 0 0 10px #00b7eb; }
+  50% { text-shadow: 0 0 8px #00b7eb, 0 0 15px #00ff00; }
+  100% { text-shadow: 0 0 5px #00b7eb, 0 0 10px #00b7eb; }
+}
+
+@keyframes particle {
+  0% { transform: translateZ(-50px) translateY(0); opacity: 0.8; }
+  50% { transform: translateZ(30px) translateY(-50vh); opacity: 0.6; }
+  100% { transform: translateZ(-50px) translateY(-100vh); opacity: 0; }
+}
+
+/* skil.css */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kỹ năng trên 1 hàng cho mobile */
+  }
+  .character-image-container {
+    display: none; /* Ẩn hình nhân vật trên mobile */
+  }
+}
+
+
+
+
+

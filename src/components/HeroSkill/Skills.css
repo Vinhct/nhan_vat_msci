@@ -1,0 +1,284 @@
+/* Skills.css */
+.skills-container {
+  width: 100vw; /* Bao phủ toàn bộ chiều rộng viewport */
+  max-width: 100%; /* Ngăn tràn ra ngoài */
+  margin: 0 auto; /* Căn giữa */
+  padding: 20px;
+  z-index: 3;
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh; /* Chiều cao tối thiểu bằng 80% viewport */
+  box-sizing: border-box; /* Đảm bảo padding không tăng kích thước */
+  /* Bỏ viền và hiệu ứng glow */
+  border: none; /* Bỏ viền neon */
+  box-shadow: none; /* Bỏ hiệu ứng glow */
+  /* opacity: 0.6;*/
+}
+  
+  .skills-title {
+    color: #00b7eb; /* Màu neon cyan */
+    font-family: 'Orbitron', sans-serif; /* Font sci-fi */
+    font-size: 2.5rem; /* Tăng kích thước để nổi bật */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00b7eb, 0 0 20px #00b7eb, 0 0 30px #00ff00; /* Hiệu ứng bóng neon */
+    position: relative;
+    padding: 5px 10px;
+    background: linear-gradient(90deg, #00b7eb, #00ff00, #ff4500); /* Gradient cho viền */
+    -webkit-background-clip: text;
+    color: transparent; /* Dùng gradient làm màu chữ */
+    animation: neonGlow 1.5s ease-in-out infinite alternate; /* Hiệu ứng nhấp nháy neon */
+  }
+  
+  .skills-title::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25%;
+    height: 3px;
+    background: linear-gradient(90deg, #00b7eb, #8a2be2, #00b7eb); /* Gradient từ xanh dương sang tím */
+    background-size: 200%;
+    animation: gradientRun 3s linear infinite; /* Thanh gradient chạy */
+    border-radius: 2px;
+    box-shadow: 0 0 10px #00b7eb;
+  }
+  
+  .skills-number {
+    color: #ff0000; /* Số "01" màu đỏ */
+    margin-right: 10px;
+  }
+  
+  .skills-content {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center ;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kỹ năng trên 1 hàng */
+    gap: 15px;
+    margin-bottom: 20px;
+    flex: 1; /* Chiếm phần còn lại */
+    max-width: 70%; /* Giới hạn chiều rộng lưới */
+  }
+  
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(50, 50, 50, 0.8);
+    border: 2px solid #00b7eb;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+  
+  .skill-item:hover,
+  .skill-item-selected {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 183, 235, 0.7), 0 0 25px rgba(0, 255, 0, 0.5);
+    background: rgba(0, 183, 235, 0.2);
+  }
+  
+  .skill-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .skill-item:hover .skill-icon,
+  .skill-item-selected .skill-icon {
+    transform: rotate(15deg) scale(1.1);
+  }
+  
+  .skill-name {
+    color: #00b7eb;
+    font-size: 0.9rem;
+    text-align: center;
+    text-shadow: 0 0 3px #00b7eb;
+  }
+  
+  .skill-item:hover .skill-name,
+  .skill-item-selected .skill-name {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+  }
+  
+  .skills-details-section {
+    display: flex;
+    justify-content: space-between; /* Căn đều các phần tử */
+    align-items: flex-start; /* Không kéo dài chiều cao */
+    gap: 20px; /* Khoảng cách giữa skill-details-panel và character-image-container */
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .skill-details-wrapper {
+    flex: 1;
+    min-width: 0; /* Đảm bảo không vượt quá kích thước */
+  }
+  .skill-details-panel {
+    background: rgba(20, 30, 50, 0.9);
+    border: 2px solid #00b7eb;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+    padding: 20px;
+    color: #e0e0e0;
+    text-align: left;
+    flex: 1; /* Chiếm không gian còn lại */
+    min-height: 400px; /* Chiều cao tối thiểu */
+  }
+  
+  .skill-details-panel h3 {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    margin-bottom: 10px;
+  }
+  
+  .skill-details-panel p {
+    margin-bottom: 15px;
+  }
+  
+  .radar-chart-placeholder {
+    display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+  color: #00b7eb;
+  text-align: center;
+  }
+  
+  .radar-chart-placeholder span {
+    padding: 5px;
+  background: rgba(0, 183, 235, 0.1);
+  border-radius: 3px;
+  }
+  
+  .character-image-container {
+    width: 300px;
+    height: 400px; /* Quay lại chiều cao ban đầu */
+    flex-shrink: 0; /* Giữ kích thước cố định */
+    position: relative; /* Để giữ ảnh không bị dịch chuyển */
+  }
+  
+  .character-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỷ lệ ảnh */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 183, 235, 0.5);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 kỹ năng trên 1 hàng cho mobile */
+    }
+    .skills-details-section {
+      flex-direction: column;
+      width: 90%;
+      align-items: center;
+    }
+    .skill-details-panel {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .character-image-container {
+      width: 200px;
+      height: 266px; /* Tỷ lệ giữ nguyên */
+    }
+  }
+
+  
+  
+  .skills-title {
+    color: #fff;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  
+  .skills-number {
+    color: #ff0000; /* Số "01" màu đỏ */
+    margin-right: 10px;
+  }
+  
+  .skills-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Hiển thị 4 kỹ năng trên 1 hàng */
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    background: rgba(50, 50, 50, 0.8);
+    border: 1px solid #00b7eb;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .skill-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+  
+  .skill-details h3 {
+    color: #00b7eb;
+    font-size: 1rem;
+    margin: 0;
+    text-shadow: 0 0 3px #00b7eb;
+  }
+  
+  .skill-details p {
+    color: #e0e0e0;
+    font-size: 0.8rem;
+    margin: 5px 0 0;
+  }
+  
+  .character-image-container {
+    width: 300px;
+    height: 400px; /* Chiều cao cố định */
+    flex-shrink: 0; /* Giữ kích thước cố định */
+    position: relative;
+  }
+  
+  
+/* Style cho container ảnh mô tả skill */
+.skill-image-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.skill-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 183, 235, 0.5); /* Hiệu ứng neon nhẹ */
+  object-fit: contain;
+}
+
+
+ 
+ 
